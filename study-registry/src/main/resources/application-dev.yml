@@ -1,0 +1,15 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: huanghongfei
+    password: 135797531
+spring:
+  boot:
+    admin:
+      client:
+      username: huanghongfei
+      password: 135797531
+management:
+  security:
+    enabled: false

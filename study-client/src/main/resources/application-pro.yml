@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: study-config
+      profile: dev
+      fail-fast: true
+      username: huanghongfei
+      password: 135797531
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/study?useSSL=false&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+logging:
+  level:
+    root: info
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://huanghongfei:135797531@127.0.0.1:8761/eureka/

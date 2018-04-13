@@ -1,0 +1,29 @@
+logging:
+  level:
+    root: info
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://huanghongfei:135797531@127.0.0.1:8761/eureka/
+management:
+  security:
+    enabled: false
+spring:
+  boot:
+    admin:
+      username: huanghongfei
+      password: 135797531
+      notify:
+        mail:
+          to: 935160293@qq.com
+          from: huanghongfei
+  mail:
+    host: smtp.163.com
+    username: vip96300@163.com
+    password: Vip135797531
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttle: true
+          required: true

@@ -1,0 +1,11 @@
+security:
+  user:
+    username: huanghongfei
+    password: 135797531
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://huanghongfei:135797531@127.0.0.1:8761/eureka/
+logging:
+  level:
+    root: info

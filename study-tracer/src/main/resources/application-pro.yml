@@ -1,0 +1,23 @@
+security:
+  basic:
+    enabled: true
+  user:
+    name: huanghongfei
+    password: 135797531
+spring:
+  boot:
+    admin:
+      client:
+      username: huanghongfei
+      password: 135797531
+management:
+  security:
+    enabled: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://huanghongfei:135797531@127.0.0.1:8761/eureka/
+
+logging:
+  level:
+    root: info

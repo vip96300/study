@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="boot-admin" />
+        <module name="study-authorize" />
+        <module name="study-client" />
+        <module name="study-common" />
+        <module name="study-config" />
+        <module name="study-gateway" />
+        <module name="study-registry" />
+        <module name="study-tracer" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="boot-admin" target="1.8" />
+      <module name="study" target="1.8" />
+      <module name="study-authorize" target="1.8" />
+      <module name="study-client" target="1.8" />
+      <module name="study-common" target="1.8" />
+      <module name="study-config" target="1.8" />
+      <module name="study-gateway" target="1.8" />
+      <module name="study-registry" target="1.8" />
+      <module name="study-tracer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

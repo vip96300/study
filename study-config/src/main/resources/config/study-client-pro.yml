@@ -1,0 +1,16 @@
+logging:
+  level:
+    root: info
+spring:
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+    database-platform: org.hibernate.dialect.MySQLDialect
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/study?useSSL=false&useUnicode=true&characterEncoding=utf8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
