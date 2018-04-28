@@ -10,14 +10,16 @@ spring:
       password: 135797531
   jpa:
     hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
       ddl-auto: update
     show-sql: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://120.79.2.162:3306/mallsys?useSSL=false&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/study?useSSL=false&useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.jdbc.Driver
     username: root
-    password: mallPwD
+    password: 123456
 logging:
   level:
     root: info
