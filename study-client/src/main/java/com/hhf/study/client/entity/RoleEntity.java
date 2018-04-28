@@ -26,8 +26,8 @@ public class RoleEntity extends BaseEntity{
     /**
      * 是否启用
      */
-    @Column(name="is_enable",nullable = false,length=1)
-    private Integer isenable;
+    @Column(nullable = false,length=1)
+    private Integer isEnable;
 
     /**
      * 角色：权限
@@ -40,8 +40,7 @@ public class RoleEntity extends BaseEntity{
      * 角色：用户
      */
     @ManyToMany
-    @JoinTable(name = "study_user_role", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = {
-            @JoinColumn(name = "user_id") })
+    @JoinTable(name = "study_user_role", joinColumns = { @JoinColumn(name = "role_id") }, inverseJoinColumns = {@JoinColumn(name = "user_id") })
     private List<UserEntity> userList;
 
     public String getName() {
@@ -60,12 +59,12 @@ public class RoleEntity extends BaseEntity{
         this.depict = depict;
     }
 
-    public Integer getIsenable() {
-        return isenable;
+    public Integer getIsEnable() {
+        return isEnable;
     }
 
-    public void setIsenable(Integer isenable) {
-        this.isenable = isenable;
+    public void setIsEnable(Integer isEnable) {
+        this.isEnable = isEnable;
     }
 
     public List<PermissionEntity> getPermissionList() {

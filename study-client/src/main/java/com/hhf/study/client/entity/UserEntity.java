@@ -15,8 +15,8 @@ public class UserEntity extends BaseEntity{
     /**
      * 用户名
      */
-    @Column(name="username",nullable = false,unique = true)
-    private String username;
+    @Column(nullable = false,unique = true)
+    private String userName;
     /**
      * 登录密码
      */
@@ -29,12 +29,12 @@ public class UserEntity extends BaseEntity{
     @JoinTable(name = "study_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {@JoinColumn(name = "role_id") })
     private List<RoleEntity> roleList;
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

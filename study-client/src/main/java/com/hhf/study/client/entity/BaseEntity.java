@@ -23,18 +23,18 @@ public class BaseEntity implements Serializable{
     /**
      * 删除标记
      */
-    @Column(name="is_del",nullable=false,length=1)
-    private Integer isdel;
+    @Column(nullable=false,length=1)
+    private Integer isDeleted;
     /**
      * 创建时间
      */
-    @Column(name="create_time",nullable=false,length=19)
-    private String createtime;
+    @Column(nullable=false,length=19)
+    private String createTime;
     /**
      * 更新时间
      */
-    @Column(name="update_time",nullable=false,length=19)
-    private String updatetime;
+    @Column(nullable=false,length=19)
+    private String updateTime;
 
     public Long getId() {
         return id;
@@ -44,27 +44,27 @@ public class BaseEntity implements Serializable{
         this.id = id;
     }
 
-    public Integer getIsdel() {
-        return isdel;
+    public Integer getIsDeleted() {
+        return isDeleted;
     }
 
-    public void setIsdel(Integer isdel) {
-        this.isdel = isdel;
+    public void setIsDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
     }
 
-    public String getCreatetime() {
-        return createtime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(String createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
-    public String getUpdatetime() {
-        return updatetime;
+    public String getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdatetime(String updatetime) {
-        this.updatetime = updatetime;
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 }

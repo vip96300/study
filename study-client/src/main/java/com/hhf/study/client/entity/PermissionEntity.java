@@ -46,4 +46,11 @@ public class PermissionEntity extends BaseEntity{
         this.url = url;
     }
 
+    public List<RoleEntity> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<RoleEntity> roleList) {
+        this.roleList = roleList;
+    }
 }
