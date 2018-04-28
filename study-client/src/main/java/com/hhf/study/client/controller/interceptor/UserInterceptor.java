@@ -39,13 +39,14 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        log.info(">>>",request.getRequestURI());
         ResourceEntity resourceEntity=resourceService.getByUri(request.getRequestURI());
         if(StringUtils.isEmpty(resourceEntity)){
             log.error("resource not found");
             return false;
         }
-        if(resourceEntity.getIsDeleted()==BasicConstants.YN.YES.getValue()||resourceEntity.getIsEnable()== BasicConstants.YN.NO.getValue()){
-            log.error("resource not found or not enable");
+        if(resourceEntity.getIsEnable()== BasicConstants.YN.NO.getValue()){
+            log.error("resource not enable");
             return false;
         }
         if(StringUtils.isEmpty(resourceEntity.getRoles())&&StringUtils.isEmpty(resourceEntity.getPermissions())){
