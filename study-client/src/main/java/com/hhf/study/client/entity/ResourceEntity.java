@@ -14,9 +14,14 @@ import javax.persistence.Table;
 public class ResourceEntity extends BaseEntity{
 
     /**
-     * 资源
+     * 资源名称
      */
-    @Column(unique = true)
+    @Column(nullable = false)
+    private String name;
+    /**
+     * 资源路径
+     */
+    @Column(nullable = false,unique = true)
     private String uri;
     /**
      * 说明
@@ -24,20 +29,18 @@ public class ResourceEntity extends BaseEntity{
     @Column()
     private String depict;
     /**
-     * 角色集合
-     */
-    @Column()
-    private String [] roles;
-    /**
-     * 权限集合
-     */
-    @Column()
-    private String [] permissions;
-    /**
      * 是否启用
      */
-    @Column(length=1)
+    @Column(nullable = false,length=1)
     private Integer isEnable;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getUri() {
         return uri;
@@ -53,22 +56,6 @@ public class ResourceEntity extends BaseEntity{
 
     public void setDepict(String depict) {
         this.depict = depict;
-    }
-
-    public String[] getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String[] roles) {
-        this.roles = roles;
-    }
-
-    public String[] getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(String[] permissions) {
-        this.permissions = permissions;
     }
 
     public Integer getIsEnable() {

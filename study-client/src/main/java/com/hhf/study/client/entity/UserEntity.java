@@ -1,8 +1,6 @@
 package com.hhf.study.client.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @Author huanghongfei
@@ -22,12 +20,6 @@ public class UserEntity extends BaseEntity{
      */
     @Column(name="password",nullable = false)
     private String password;
-    /**
-     * 用户：权限
-     */
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "study_user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {@JoinColumn(name = "role_id") })
-    private List<RoleEntity> roleList;
 
     public String getUserName() {
         return userName;
@@ -43,13 +35,5 @@ public class UserEntity extends BaseEntity{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<RoleEntity> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<RoleEntity> roleList) {
-        this.roleList = roleList;
     }
 }

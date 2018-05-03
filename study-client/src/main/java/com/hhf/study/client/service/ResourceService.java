@@ -16,8 +16,8 @@ public class ResourceService {
     @Autowired
     private ResourceDao resourceDao;
 
-    public ResourceEntity getByUri(String uri){
-        ResourceEntity resourceEntity=resourceDao.findByUri(uri);
+    public ResourceEntity getByUserIdAndUri(long userId,String uri){
+        ResourceEntity resourceEntity=resourceDao.findByUserIdAndUri(userId,uri);
         return resourceEntity;
     }
 }

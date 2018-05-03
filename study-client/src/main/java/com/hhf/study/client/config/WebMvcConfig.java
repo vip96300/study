@@ -1,5 +1,6 @@
 package com.hhf.study.client.config;
 
+import com.hhf.study.client.controller.interceptor.LoggingInterceptor;
 import com.hhf.study.client.controller.interceptor.UserInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +16,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
-	
+
+    @Autowired
+    private LoggingInterceptor loggingInterceptor;
+
     @Autowired
     private UserInterceptor userInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(loggingInterceptor);
         registry.addInterceptor(userInterceptor);
     }
 

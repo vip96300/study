@@ -1,8 +1,6 @@
 package com.hhf.study.client.controller.interceptor;
 
-import com.hhf.study.client.entity.PermissionEntity;
 import com.hhf.study.client.entity.ResourceEntity;
-import com.hhf.study.client.entity.RoleEntity;
 import com.hhf.study.client.entity.UserEntity;
 import com.hhf.study.client.service.ResourceService;
 import com.hhf.study.client.service.UserService;
@@ -31,6 +29,10 @@ import javax.servlet.http.HttpServletResponse;
 public class UserInterceptor extends HandlerInterceptorAdapter {
 
     private static final Logger log= LoggerFactory.getLogger(UserInterceptor.class);
+    /**
+     * 省略拦截的资源集
+     */
+    private static final String[] MISSED_RESOURCES={"/login","/register"};
 
     @Autowired
     private ResourceService resourceService;
@@ -38,43 +40,29 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
     private UserService userService;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info(">>>",request.getRequestURI());
-        ResourceEntity resourceEntity=resourceService.getByUri(request.getRequestURI());
-        if(StringUtils.isEmpty(resourceEntity)){
-            log.error("resource not found");
-            return false;
-        }
-        if(resourceEntity.getIsEnable()== BasicConstants.YN.NO.getValue()){
-            log.error("resource not enable");
-            return false;
-        }
-        if(StringUtils.isEmpty(resourceEntity.getRoles())&&StringUtils.isEmpty(resourceEntity.getPermissions())){
-            log.info("resource don't need roles and permissions");
-            return true;
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
+        for(String uri:UserInterceptor.MISSED_RESOURCES){
+            if(request.getRequestURI().contains(uri)){
+                log.debug("resource {} missed",request.getRequestURI());
+                return true;
+            }
         }
         String jwt=request.getParameter(SecurityConstants.JWT);
+        if(StringUtils.isEmpty(jwt)){
+            log.error("{} need be authentication",request.getRequestURI());
+            return false;
+        }
         Jws<Claims> claims = Jwts.parser().setSigningKey(SecurityConstants.JWT_SECRET).parseClaimsJws(jwt);
         UserEntity userEntity=userService.get(Long.valueOf(claims.getHeader().get(SecurityConstants.USER_ID).toString()));
         if(userEntity==null){
             log.error("user not found");
             return false;
         }
-        for(String role:resourceEntity.getRoles()){
-            for(RoleEntity roleEntity:userEntity.getRoleList()){
-                if(roleEntity.getName().equals(role)&&roleEntity.getIsEnable()== BasicConstants.YN.YES.getValue()){
-                    for(String permission:resourceEntity.getPermissions()){
-                        for(PermissionEntity permissionEntity:roleEntity.getPermissionList()){
-                            if(permissionEntity.getName().equals(permission)){
-                                log.info("user is valid");
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
+        ResourceEntity resourceEntity=resourceService.getByUserIdAndUri(userEntity.getId().longValue(),request.getRequestURI());
+        if(resourceEntity==null||resourceEntity.getIsEnable().intValue()== BasicConstants.YN.NO.getValue()){
+            log.error("user {} lost resource {} or resource is not enabled",userEntity.getUserName(),request.getRequestURI());
+            return false;
         }
-        log.info("user not valid");
-        return false;
+        return true;
     }
 }
