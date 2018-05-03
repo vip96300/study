@@ -63,6 +63,7 @@ public class UserInterceptor extends HandlerInterceptorAdapter {
             log.error("user {} lost resource {} or resource is not enabled",userEntity.getUserName(),request.getRequestURI());
             return false;
         }
+        request.setAttribute(SecurityConstants.USER_ID,claims.getHeader().get(SecurityConstants.USER_ID));
         return true;
     }
 }
