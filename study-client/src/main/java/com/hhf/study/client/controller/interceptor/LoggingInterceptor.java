@@ -26,15 +26,31 @@ public class LoggingInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private LoggingService loggingService;
 
+    /**
+     * 请求之前执行
+     * @param request
+     * @param response
+     * @param handler
+     * @return
+     * @throws Exception
+     */
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)  {
         log.info(">>> {}",request.getRequestURI());
         loggingService.add(new LoggingEntity(request.getSession().getId(),request.getRequestURI(), RequestUtils.getIpAddress(request),request.getHeader("user-agent"),request.getQueryString(),response.getStatus(),null));
         return true;
     }
 
+    /**
+     * 请求之后执行
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @throws Exception
+     */
     @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         LoggingEntity loggingEntity=loggingService.getBySessionIdAndRequestURIAndCreateTimeMax(request.getSession().getId(),request.getRequestURI());
         loggingEntity.setStatus(response.getStatus());
         if(ex!=null){

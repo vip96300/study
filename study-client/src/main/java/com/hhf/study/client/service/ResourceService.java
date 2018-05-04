@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @Date Create in 15:24 2018/4/28
  */
 @Service
-public class ResourceService {
+public class ResourceService extends BaseService{
 
     @Autowired
     private ResourceDao resourceDao;

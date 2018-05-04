@@ -1,9 +1,8 @@
 package com.hhf.study.client.controller;
 
 import com.hhf.study.client.controller.vo.ResultVo;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.hhf.study.common.constant.SecurityConstants;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Author huanghongfei
@@ -18,8 +17,19 @@ public class UserController extends BaseController{
      * 用户注册
      * @return
      */
-    @RequestMapping(path="/register")
-    public Object register(@RequestParam String userName,@RequestParam String password){
-        return new ResultVo<>(200,null,null);
+    @PostMapping(path="/register")
+    public Object register(@RequestParam(name="userName") String userName,
+                           @RequestParam(name="password") String password){
+        return ResultVo.instance(SUCCESS,null,null);
+    }
+
+    /**
+     * 获取用户信息
+     * @param userId
+     * @return
+     */
+    @GetMapping(path="/getUser")
+    public Object get(@RequestAttribute(name= SecurityConstants.USER_ID) long userId){
+        return null;
     }
 }

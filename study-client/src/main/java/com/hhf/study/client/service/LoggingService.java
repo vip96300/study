@@ -15,7 +15,7 @@ import java.util.Date;
  * @Date Create in 13:44 2018/5/2
  */
 @Service
-public class LoggingService {
+public class LoggingService extends BaseService{
 
     @Autowired
     private LoggingDao loggingDao;
